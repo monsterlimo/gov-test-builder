@@ -11,7 +11,7 @@
         Problem report submitted
       </h1>
       <div class="govuk-panel__body">
-        Your reference number<br><strong>PR-{{ range(100000, 999999) | random }}</strong>
+        Your reference number<br><strong>{{ data.referenceNumber or "PR-375167" }}</strong>
       </div>
     </div>
     

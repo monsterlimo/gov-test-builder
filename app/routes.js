@@ -1,5 +1,10 @@
-const express = require('express')
-const router = express.Router()
+//
+// For guidance on how to create routes see:
+// https://prototype-kit.service.gov.uk/docs/create-routes
+//
+
+const govukPrototypeKit = require('govuk-prototype-kit')
+const router = govukPrototypeKit.requests.setupRouter()
 
 // Store user data in session
 function initializeSession(req) {
@@ -60,8 +65,10 @@ router.post('/check-answers', (req, res) => {
 // Confirmation page
 router.get('/confirmation', (req, res) => {
   const data = req.session.data
-  // Clear session data after confirmation
-  req.session.data = {}
+  // Generate a random reference number for the confirmation
+  const referenceNumber = 'PR-' + Math.floor(Math.random() * 900000 + 100000)
+  data.referenceNumber = referenceNumber
+  
   res.render('confirmation', { data: data })
 })
 
@@ -77,5 +84,3 @@ router.get('/change/:field', (req, res) => {
     res.redirect('/check-answers')
   }
 })
-
-module.exports = router
