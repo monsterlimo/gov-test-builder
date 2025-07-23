@@ -1,0 +1,61 @@
+{% extends "layouts/main.html" %}
+
+{% set title = "Your contact details" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <form action="/user-info" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Your contact details
+            </h1>
+          </legend>
+          <p class="govuk-body">We need your contact details so we can get back to you about your problem report.</p>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="fullName">
+          Full name
+        </label>
+        <input class="govuk-input" id="fullName" name="fullName" type="text" value="{{ data.fullName if data.fullName }}" required>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="email">
+          Email address
+        </label>
+        <div id="email-hint" class="govuk-hint">
+          We'll use this to send you updates about your problem report
+        </div>
+        <input class="govuk-input" id="email" name="email" type="email" value="{{ data.email if data.email }}" aria-describedby="email-hint" required>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="phone">
+          Phone number (optional)
+        </label>
+        <div id="phone-hint" class="govuk-hint">
+          For international numbers include the country code
+        </div>
+        <input class="govuk-input govuk-input--width-20" id="phone" name="phone" type="tel" value="{{ data.phone if data.phone }}" aria-describedby="phone-hint">
+      </div>
+
+      <div class="govuk-button-group">
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+        <a class="govuk-link" href="/">Cancel</a>
+      </div>
+      
+    </form>
+    
+  </div>
+</div>
+
+{% endblock %}

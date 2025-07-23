@@ -1,0 +1,84 @@
+/* Custom styles for the prototype */
+
+.govuk-header__logotype-crown {
+  height: 30px;
+  width: 36px;
+}
+
+.app-step-nav {
+  margin-bottom: 30px;
+}
+
+.app-step-nav__step {
+  position: relative;
+  padding-left: 40px;
+  padding-bottom: 20px;
+}
+
+.app-step-nav__step:not(:last-child):before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 40px;
+  width: 2px;
+  height: calc(100% - 20px);
+  background: #b1b4b6;
+}
+
+.app-step-nav__circle {
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #b1b4b6;
+  background: white;
+  text-align: center;
+  line-height: 26px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.app-step-nav__circle--current {
+  background: #1d70b8;
+  color: white;
+  border-color: #1d70b8;
+}
+
+.app-step-nav__circle--complete {
+  background: #00703c;
+  color: white;
+  border-color: #00703c;
+}
+
+.app-step-nav__circle--complete:before {
+  content: "✓";
+}
+
+.app-summary-card {
+  border: 1px solid #b1b4b6;
+  margin-bottom: 20px;
+}
+
+.app-summary-card__header {
+  background: #f3f2f1;
+  padding: 15px 20px;
+  border-bottom: 1px solid #b1b4b6;
+}
+
+.app-summary-card__title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.app-summary-card__body {
+  padding: 15px 20px;
+}
+
+.app-change-link {
+  float: right;
+  margin-left: 20px;
+}

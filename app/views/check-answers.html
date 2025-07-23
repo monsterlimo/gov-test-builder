@@ -1,0 +1,116 @@
+{% extends "layouts/main.html" %}
+
+{% set title = "Check your answers" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-l">Check your answers before submitting your problem report</h1>
+    
+    <div class="app-summary-card">
+      <div class="app-summary-card__header">
+        <h2 class="app-summary-card__title">Your contact details</h2>
+        <a class="app-change-link govuk-link" href="/change/user-info">Change<span class="govuk-visually-hidden"> contact details</span></a>
+      </div>
+      <div class="app-summary-card__body">
+        <dl class="govuk-summary-list govuk-summary-list--no-border">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Full name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data.fullName or "Not provided" }}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data.email or "Not provided" }}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Phone number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data.phone or "Not provided" }}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="app-summary-card">
+      <div class="app-summary-card__header">
+        <h2 class="app-summary-card__title">Problem details</h2>
+        <a class="app-change-link govuk-link" href="/change/problem-details">Change<span class="govuk-visually-hidden"> problem details</span></a>
+      </div>
+      <div class="app-summary-card__body">
+        <dl class="govuk-summary-list govuk-summary-list--no-border">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Problem type
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data.problemType == "technical" %}
+                Technical issue (website not working, error messages)
+              {% elif data.problemType == "service" %}
+                Service problem (wrong information, process issues)
+              {% elif data.problemType == "accessibility" %}
+                Accessibility issue (difficulty using the service)
+              {% elif data.problemType == "other" %}
+                Other
+              {% else %}
+                Not provided
+              {% endif %}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Problem description
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data.problemDescription or "Not provided" }}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              When it happened
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data.whenHappened == "today" %}
+                Today
+              {% elif data.whenHappened == "yesterday" %}
+                Yesterday
+              {% elif data.whenHappened == "this-week" %}
+                Earlier this week
+              {% elif data.whenHappened == "longer-ago" %}
+                More than a week ago
+              {% else %}
+                Not provided
+              {% endif %}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <h2 class="govuk-heading-m">Now submit your problem report</h2>
+    <p class="govuk-body">By submitting this problem report you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+    <form action="/check-answers" method="post">
+      <div class="govuk-button-group">
+        <button class="govuk-button" data-module="govuk-button">
+          Submit problem report
+        </button>
+        <a class="govuk-link" href="/problem-details">Back</a>
+      </div>
+    </form>
+    
+  </div>
+</div>
+
+{% endblock %}

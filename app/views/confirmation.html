@@ -1,0 +1,112 @@
+{% extends "layouts/main.html" %}
+
+{% set title = "Problem report submitted" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Problem report submitted
+      </h1>
+      <div class="govuk-panel__body">
+        Your reference number<br><strong>PR-{{ range(100000, 999999) | random }}</strong>
+      </div>
+    </div>
+    
+    <p class="govuk-body">We have sent you a confirmation email.</p>
+    
+    <h2 class="govuk-heading-m">What happens next</h2>
+    
+    <p class="govuk-body">We will:</p>
+    <ol class="govuk-list govuk-list--number">
+      <li>review your problem report</li>
+      <li>investigate the issue you've reported</li>
+      <li>contact you within 5 working days with an update</li>
+      <li>work to resolve the problem</li>
+    </ol>
+    
+    <div class="govuk-inset-text">
+      <p>If your problem is urgent and needs immediate attention, please contact our support team directly.</p>
+      <p><strong>Support helpline:</strong> 0300 123 4567<br>
+      <strong>Email:</strong> support@example.gov.uk</p>
+    </div>
+    
+    <h2 class="govuk-heading-m">Help us improve this service</h2>
+    <p class="govuk-body">
+      <a class="govuk-link" href="#" target="_blank">What did you think of this service?</a> (takes 30 seconds)
+    </p>
+    
+    <h2 class="govuk-heading-m">Your problem report details</h2>
+    
+    {% if data and data.fullName %}
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Submitted by
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data.fullName }}
+        </dd>
+      </div>
+      
+      {% if data.email %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Email
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data.email }}
+        </dd>
+      </div>
+      {% endif %}
+      
+      {% if data.problemType %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Problem type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if data.problemType == "technical" %}
+            Technical issue
+          {% elif data.problemType == "service" %}
+            Service problem
+          {% elif data.problemType == "accessibility" %}
+            Accessibility issue
+          {% elif data.problemType == "other" %}
+            Other
+          {% endif %}
+        </dd>
+      </div>
+      {% endif %}
+      
+      {% if data.problemDescription %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Description
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data.problemDescription }}
+        </dd>
+      </div>
+      {% endif %}
+      
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Submitted
+        </dt>
+        <dd class="govuk-summary-list__value">
+          23 July 2024 at 09:30
+        </dd>
+      </div>
+    </dl>
+    {% endif %}
+    
+    <p class="govuk-body">
+      <a class="govuk-link" href="/">Report another problem</a>
+    </p>
+    
+  </div>
+</div>
+{% endblock %}
