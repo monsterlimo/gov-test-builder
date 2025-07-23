@@ -1,0 +1,118 @@
+{% extends "layouts/main.html" %}
+
+{% set title = "Problem details" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <form action="/problem-details" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Tell us about the problem
+            </h1>
+          </legend>
+          <p class="govuk-body">Provide as much detail as possible so we can help resolve your issue.</p>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="problem-type-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            What type of problem are you reporting?
+          </legend>
+          <div id="problem-type-hint" class="govuk-hint">
+            Select the option that best describes your problem
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="problem-type-technical" name="problemType" type="radio" value="technical" {{ "checked" if data.problemType == "technical" }}>
+              <label class="govuk-label govuk-radios__label" for="problem-type-technical">
+                Technical issue (website not working, error messages)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="problem-type-service" name="problemType" type="radio" value="service" {{ "checked" if data.problemType == "service" }}>
+              <label class="govuk-label govuk-radios__label" for="problem-type-service">
+                Service problem (wrong information, process issues)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="problem-type-accessibility" name="problemType" type="radio" value="accessibility" {{ "checked" if data.problemType == "accessibility" }}>
+              <label class="govuk-label govuk-radios__label" for="problem-type-accessibility">
+                Accessibility issue (difficulty using the service)
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="problem-type-other" name="problemType" type="radio" value="other" {{ "checked" if data.problemType == "other" }}>
+              <label class="govuk-label govuk-radios__label" for="problem-type-other">
+                Other
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="problemDescription">
+          Describe the problem in detail
+        </label>
+        <div id="problem-description-hint" class="govuk-hint">
+          Include what you were trying to do, what went wrong, and any error messages you saw
+        </div>
+        <textarea class="govuk-textarea" id="problemDescription" name="problemDescription" rows="6" aria-describedby="problem-description-hint" required>{{ data.problemDescription if data.problemDescription }}</textarea>
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="when-happened-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            When did this problem happen?
+          </legend>
+          <div id="when-happened-hint" class="govuk-hint">
+            Select the option that best describes when you experienced this problem
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="when-happened-today" name="whenHappened" type="radio" value="today" {{ "checked" if data.whenHappened == "today" }}>
+              <label class="govuk-label govuk-radios__label" for="when-happened-today">
+                Today
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="when-happened-yesterday" name="whenHappened" type="radio" value="yesterday" {{ "checked" if data.whenHappened == "yesterday" }}>
+              <label class="govuk-label govuk-radios__label" for="when-happened-yesterday">
+                Yesterday
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="when-happened-week" name="whenHappened" type="radio" value="this-week" {{ "checked" if data.whenHappened == "this-week" }}>
+              <label class="govuk-label govuk-radios__label" for="when-happened-week">
+                Earlier this week
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="when-happened-longer" name="whenHappened" type="radio" value="longer-ago" {{ "checked" if data.whenHappened == "longer-ago" }}>
+              <label class="govuk-label govuk-radios__label" for="when-happened-longer">
+                More than a week ago
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-button-group">
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+        <a class="govuk-link" href="/user-info">Back</a>
+      </div>
+      
+    </form>
+    
+  </div>
+</div>
+
+{% endblock %}
